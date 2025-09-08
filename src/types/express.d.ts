@@ -1,6 +1,6 @@
 import {Request , response, Response} from 'express';
 
-export type req = Request ;
-export type res = response;
+export type Req = Request ;
+export type Res = response;
 
 
