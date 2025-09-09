@@ -5,13 +5,14 @@ export interface IEmployee {
   last_name: string;
   national_id: string;
   email: string;
+  password:string;
   phone: string;
   position: string;
   department: string;
-  hire_date: Date;
+  hire_data: Date;
   status: 'active' | 'inactive' | 'suspended';
   created_at: Date;
   updated_at: Date;
 }
 
-export type employeeCreateProps = Omit<IEmployee, "id"|"createdAt" | "updatedAt">;
+export type employeeCreateProps = Omit<IEmployee, "id"|"created_at" | "updated_at">;
