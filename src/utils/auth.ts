@@ -2,9 +2,9 @@ import {hash , compare} from 'bcryptjs';
 import {sign , verify} from 'jsonwebtoken';
 
 
-const securityCode = process.env.SRC_CODE
+const securityCode = process.env.SRC_CODE || "sjajkabkjfbajkbfjkbajcbjkasbjkcbajkbcjkas"
 if(!securityCode){
-    throw new Error('Security code is not found')
+    throw new Error('Security code is not found');
 }
 
 // generate token
