@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import connectToDB from "./config/db";
+import EmployeeRoutes from './routes/EmployeeRoutes';
+
 const app = express();
 
 dotenv.config()
@@ -19,33 +21,27 @@ app.use(helmet());
 app.use(cors())
 
 
-
-
-
-
-
-app.get('/' , (req:Req, res:Res)=>{
-    res.status(200).json({message:'Server is running  send'})
-})
-
-
+// routes 
+app.use('/api/employees' , EmployeeRoutes)
 
 
 // connection to dataBase
- const connectToDatabase = async ()=>{
-    try{
-        await connectToDB.authenticate();
-        console.log("DB connected successfully");
+const connectToDatabase = async () => {
+  try {
+    await connectToDB.authenticate();
+    console.log("DB connected successfully");
 
-        const port = process.env.PORT || 3000;
-        app.listen(port,()=>{
-            console.log(`Server is running on port ${port}`);
-        }).on('error',(error:NodeJS.ErrnoException)=>{
-            console.log("error starting server",error)
-        })
-    }catch (error:unknown){
-        console.log("DB connection failed ", error)
-    }
-}
+    await connectToDB.sync({ alter: true });
+
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+
+  } catch (error) {
+    if (error instanceof Error) console.log("DB connection failed", error.message);
+    else console.log("DB connection failed", error);
+  }
+};
 
 connectToDatabase()
