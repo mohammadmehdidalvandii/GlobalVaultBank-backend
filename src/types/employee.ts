@@ -13,3 +13,5 @@ export interface IEmployee {
   created_at: Date;
   updated_at: Date;
 }
+
+export type employeeCreateProps = Omit<IEmployee, "id"|"createdAt" | "updatedAt">;
