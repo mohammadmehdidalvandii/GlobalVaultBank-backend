@@ -37,5 +37,30 @@ export const employeeController = {
                 error:error
             })
         }
+    },
+    async update(req:Req, res:Res){
+        try{    
+            const {id} = req.params;
+            const updateData = req.body;
+
+            if(!id) return res.status(400).json({
+                message:"Employee ID is required",
+                status:400,
+            });
+
+            const updateEmployee = await employeeService.updateEmployee(id , updateData);
+            res.status(200).json({
+                message:"Employee updated successfully",
+                status:200,
+                data:updateEmployee,
+            })
+
+        } catch(error){
+            res.status(500).json({
+                message:"Failed to update employee",
+                status:500,
+                error:error
+            })
+        }
     }
 }

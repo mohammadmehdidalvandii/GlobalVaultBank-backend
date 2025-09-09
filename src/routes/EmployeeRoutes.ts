@@ -4,7 +4,8 @@ import { validationEmployees } from "../validations/employeeValidation";
 
 const router = Router();
 
-router.post('/create' , validationEmployees , employeeController.create)
+router.post('/create' , validationEmployees , employeeController.create);
+router.put('/update/:id', employeeController.update)
 
 
 export default router
