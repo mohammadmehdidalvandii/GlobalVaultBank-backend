@@ -1,7 +1,7 @@
 import { DataTypes, STRING } from "sequelize";
 import connectToDB from "../config/db";
 
-const employee = connectToDB.define('Employee',{
+const employee = connectToDB.define('employee',{
     id:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
@@ -30,6 +30,10 @@ const employee = connectToDB.define('Employee',{
         allowNull:false,
         unique:true,
         validate:{isEmail:true},
+    },
+    password:{
+        type:DataTypes.STRING,
+        allowNull:false,
     },
     phone:{
         type:DataTypes.STRING,
