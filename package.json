@@ -7,12 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch  'src/**/*.ts' --exec ts-node src/server.ts",
     "start": "node dist/server.js",
-    "testDB":"npx ts-node src/testDB.ts"
+    "testDB": "npx ts-node src/testDB.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
