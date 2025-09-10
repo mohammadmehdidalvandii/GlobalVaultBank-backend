@@ -7,7 +7,8 @@ const router = Router();
 router.post('/create' , validationEmployees , employeeController.create);
 router.put('/update/:id', employeeController.update);
 router.delete('/delete/:id', employeeController.delete);
-router.get('/', employeeController.getAllEmployees)
+router.get('/', employeeController.getAllEmployees);
+router.get('/:id', employeeController.getEmployeeById);
 
 
 export default router

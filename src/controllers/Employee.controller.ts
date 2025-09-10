@@ -1,3 +1,4 @@
+import { error } from "console";
 import { employeeService } from "../services/EmployeeService";
 import {Req , Res} from '../types/express'
 import {hashedPassword} from '../utils/auth'
@@ -96,6 +97,30 @@ export const employeeController = {
         } catch(error){
             return res.status(500).json({
                 message:"Failed getAllEmployees",
+                status:500,
+                error:error,
+            })
+        }
+    },
+
+    async getEmployeeById(req:Req ,res:Res){
+        try{
+            const {id } = req.params;
+
+            if(!id) return res.status(400).json({
+                message:"Employee ID is required",
+                status:400,
+            });
+            const employeeID = await employeeService.getEmployeeByID(id);
+            res.status(200).json({
+                message:'get employee by id',
+                status:200,
+                data:employeeID,
+            })
+
+        }catch(error){
+            res.status(500).json({
+                message:"Failed get employee_code",
                 status:500,
                 error:error,
             })
