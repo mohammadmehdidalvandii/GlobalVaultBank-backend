@@ -62,5 +62,28 @@ export const employeeController = {
                 error:error
             })
         }
+    },
+    async delete(req:Req, res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({
+                message:"Employee ID is required",
+                status:400,
+            });
+
+            const deleteEmployee = await employeeService.deleteEmployee(id);
+            res.status(200).json({
+                message:"Employee deleted successfully",
+                status:200,
+                data:deleteEmployee
+            })
+
+        } catch(error){
+            res.status(500).json({
+                message:"Failed to delete employee",
+                status:500,
+                error:error
+            })
+        }
     }
 }
