@@ -9,6 +9,13 @@ export const employeeController = {
         try{
             const {employee_code , first_name , last_name , national_id , email , password ,phone , position ,department, hire_data  , status} = req.body;
 
+            const existEmployee = await employeeService.getEmployeeByCodeEmployee(employee_code);
+            if(!existEmployee) {
+                 res.status(400).json({
+                message:"Employee is already ",
+                status:400,
+            })
+             }
             // hashed password;
             const hashPassword = await hashedPassword(password);
             
@@ -102,7 +109,6 @@ export const employeeController = {
             })
         }
     },
-
     async getEmployeeById(req:Req ,res:Res){
         try{
             const {id } = req.params;

@@ -1,6 +1,6 @@
 import EmployeeModel from "../models/Employee";
 import { IEmployee , employeeCreateProps } from "../types/employee";
-import { Sequelize } from "sequelize";
+
 
 export const employeeService = {
     async  createEmployee(data:employeeCreateProps) {
@@ -18,6 +18,11 @@ export const employeeService = {
     async getEmployeeByID(id:string){
         const employeeID = await EmployeeModel.findByPk(id);
         return employeeID;
+    },
+
+    async getEmployeeByCodeEmployee(employee_code:string){
+        const employeeCode = await EmployeeModel.findOne({where:{employee_code}});
+        return employeeCode
     },
 
     async updateEmployee(id:string , data:Partial<IEmployee>){
