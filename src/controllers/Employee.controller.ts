@@ -85,5 +85,20 @@ export const employeeController = {
                 error:error
             })
         }
+    },
+    async getAllEmployees(req:Req,res:Res){
+        try{
+            const employees = await employeeService.getAllEmployees();
+            res.status(200).json({
+                message:"Get all employees",
+                data:employees
+            })
+        } catch(error){
+            return res.status(500).json({
+                message:"Failed getAllEmployees",
+                status:500,
+                error:error,
+            })
+        }
     }
 }

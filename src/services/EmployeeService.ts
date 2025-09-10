@@ -1,5 +1,6 @@
 import EmployeeModel from "../models/Employee";
 import { IEmployee , employeeCreateProps } from "../types/employee";
+import { Sequelize } from "sequelize";
 
 export const employeeService = {
     async  createEmployee(data:employeeCreateProps) {
@@ -8,7 +9,9 @@ export const employeeService = {
     },
 
     async getAllEmployees(){
-        const employees = await EmployeeModel.findAll();
+        const employees = await EmployeeModel.findAll({
+            order:[["createdAt","DESC"]]
+        });
         return employees
     },
 
