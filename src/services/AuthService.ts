@@ -1,5 +1,5 @@
 import EmployeeModel from '../models/Employee';
-import {comparePassword , generateAccessToken , generateRefreshToken} from '../utils/auth';
+import {comparePassword , generateAccessToken , generateRefreshToken , verifyToken} from '../utils/auth';
 
 
 export const authService = {
@@ -22,5 +22,18 @@ export const authService = {
         });
 
         return {employee , accessToken , refreshToken}
+    },
+    async refreshToken(refreshToken:string){
+        try{
+            const payload:any = verifyToken(refreshToken);
+            console.log("payload =>" , payload);
+
+            const newAccessToken = generateAccessToken({
+                id:payload.id,
+            });
+            return newAccessToken;
+        } catch(error){
+            throw new Error(`Invalid refreshToken => ${error}`, );
+        }
     }
 }

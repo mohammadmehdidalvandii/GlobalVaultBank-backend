@@ -7,12 +7,14 @@ import dotenv from 'dotenv'
 import connectToDB from "./config/db";
 import EmployeeRoutes from './routes/EmployeeRoutes';
 import AuthRoutes from './routes/AuthRoutes';
+import cookieParser from 'cookie-parser'
 
 const app = express();
 
 dotenv.config()
 
 // paras data JSON
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
