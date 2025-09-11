@@ -6,6 +6,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import connectToDB from "./config/db";
 import EmployeeRoutes from './routes/EmployeeRoutes';
+import AuthRoutes from './routes/AuthRoutes';
 
 const app = express();
 
@@ -23,7 +24,7 @@ app.use(cors())
 
 // routes 
 app.use('/api/employees' , EmployeeRoutes)
-
+app.use('/api/auth', AuthRoutes)
 
 // connection to dataBase
 const connectToDatabase = async () => {
