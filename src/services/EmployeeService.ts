@@ -3,8 +3,8 @@ import { IEmployee , employeeCreateProps } from "../types/employee";
 
 
 export const employeeService = {
-    async  createEmployee(data:employeeCreateProps) {
-        const newEmployee = await EmployeeModel.create(data)
+    async  createEmployee(data:employeeCreateProps){
+        const newEmployee = await EmployeeModel.create(data as any)
         return newEmployee
     },
 
