@@ -7,10 +7,19 @@ if(!securityCode){
     throw new Error('Security code is not found');
 }
 
-// generate token
-const generateToken = (data:string)=>{
+// generate access token
+const generateAccessToken = (data:object)=>{
     try{
-        const token = sign(data, securityCode ,{expiresIn:'1h'});
+        const token = sign({data}, securityCode ,{expiresIn:'15m'});
+        return token
+    } catch(error){
+        console.log("Invalid generate token =>" , error)
+    }
+};
+// generate refresh token
+const generateRefreshToken = (data:object)=>{
+    try{
+        const token = sign({data}, securityCode ,{expiresIn:'7d'});
         return token
     } catch(error){
         console.log("Invalid generate token =>" , error)
@@ -28,19 +37,20 @@ const verifyToken = (token:string)=>{
 };
 
 // hashed password;
-const hashedPassword = async (password:string)=>{
+const hashedPassword = async (password:string):Promise<string>=>{
     const hashPassword = await hash(password , 10);
     return hashPassword
 }
 
 // compare password
-const comparePassword = async (password:string , hashedPassword:string)=>{
+const comparePassword = async (password:string , hashedPassword:string):Promise<boolean>=>{
     const validPassword = await compare(password , hashedPassword);
     return validPassword
 }
 
 export {
-    generateToken,
+    generateAccessToken,
+    generateRefreshToken,
     verifyToken,
     hashedPassword,
     comparePassword,
