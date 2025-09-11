@@ -1,7 +1,10 @@
-import { DataTypes, STRING } from "sequelize";
+import { DataTypes , Model } from "sequelize";
 import connectToDB from "../config/db";
+import {IEmployee} from '../types/employee'
 
-const employee = connectToDB.define('employee',{
+type employeeInstance = Model<IEmployee> & IEmployee;
+
+const employee = connectToDB.define<employeeInstance>('employee',{
     id:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
