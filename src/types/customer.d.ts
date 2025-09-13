@@ -13,3 +13,5 @@ country:string,
 status:"active"|"suspended"|"closed",
 lastActivity:Date
 }
+
+export type customerCreateProps = Omit<ICustomer,"id">
