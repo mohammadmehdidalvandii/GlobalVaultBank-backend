@@ -64,5 +64,11 @@ export const authController = {
                 status:500,
             })
         }
+    },
+    async logout(req:Req , res:Res){
+        res.clearCookie('refreshToken',{path:"/api/auth/refresh-token"});
+        res.json({
+            message:"logged out successfully"
+        })
     }
 }
