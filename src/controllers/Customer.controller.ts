@@ -74,5 +74,28 @@ export const customerController = {
                 error:error,
             })
         }
+    },
+    async customerByID(req:Req , res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({
+                message:"Customer ID is required",
+                status:400,
+            }); 
+
+            const customer = await customerService.customerGetById(id);
+            res.status(200).json({
+                message:"get customer by id successfully",
+                status:200,
+                data:customer
+            })
+
+        } catch(error){
+            res.status(500).json({
+                message:"Failed get customer ID server",
+                status:500,
+                error:error,
+            })
+        }
     }
 }

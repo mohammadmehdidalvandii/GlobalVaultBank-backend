@@ -19,8 +19,13 @@ export const customerService = {
         const customers = await CustomerModel.findAll()
         return customers
     },
+    async customerGetById(id:string){
+        const customer = await CustomerModel.findByPk(id);
+        return customer 
+    },
     async customerUpdate(id:string , data:Partial<ICustomer>){
         const customer = await CustomerModel.update(data , {where:{id}});
         return customer
-    }
+    },
+
 }
