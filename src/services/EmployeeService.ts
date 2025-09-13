@@ -9,9 +9,7 @@ export const employeeService = {
     },
 
     async getAllEmployees(){
-        const employees = await EmployeeModel.findAll({
-            order:[["createdAt","DESC"]]
-        });
+        const employees = await EmployeeModel.findAll();
         return employees
     },
 
