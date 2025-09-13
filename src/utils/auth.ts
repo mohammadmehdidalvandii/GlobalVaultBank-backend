@@ -1,6 +1,9 @@
 import {hash , compare} from 'bcryptjs';
-import {sign , verify} from 'jsonwebtoken';
+import {sign , verify , JwtPayload} from 'jsonwebtoken';
 
+interface MyTokenPayload extends JwtPayload{
+    data:{id:string , [key:string]:any}
+}
 
 const securityCode = process.env.SRC_CODE || "sjajkabkjfbajkbfjkbajcbjkasbjkcbajkbcjkas"
 if(!securityCode){
@@ -29,7 +32,7 @@ const generateRefreshToken = (data:object)=>{
 // verify Token
 const verifyToken = (token:string)=>{
     try{
-        const payload = verify(token, securityCode);
+        const payload = verify(token, securityCode)as MyTokenPayload;
         return payload
     } catch(error){
         console.log("Invalid verify token =>" , error)
