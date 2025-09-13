@@ -5,7 +5,6 @@ import {comparePassword , generateAccessToken , generateRefreshToken , verifyTok
 export const authService = {
     async login(employee_code:string , password:string){
         const employee = await EmployeeModel.findOne({where:{employee_code}});
-        console.log("em=>" , employee)
         if(!employee) throw new Error('Employee not found');
         
         const isValidPassword = await comparePassword(password ,employee.password);
@@ -26,8 +25,6 @@ export const authService = {
     async refreshToken(refreshToken:string){
         try{
             const payload:any = verifyToken(refreshToken);
-            console.log("payload =>" , payload);
-
             const newAccessToken = generateAccessToken({
                 id:payload.id,
             });

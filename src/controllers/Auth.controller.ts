@@ -30,9 +30,7 @@ export const authController = {
     },
     async refreshToken(req:Req , res:Res){
         try{
-            console.log('req',req.cookies)
             const token = req.cookies.refreshToken;
-            console.log("token=>" , token)
             if(!token) return res.status(401).json({
                 message:"No refresh token"
             });
