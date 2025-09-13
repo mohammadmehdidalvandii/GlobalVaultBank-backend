@@ -50,5 +50,29 @@ export const customerController = {
                 error:error
             })
         }
+    },
+    async customerUpdate(req:Req, res:Res){
+        try{
+            const {id} = req.params;
+            const updateData = req.body;
+            if(!id) return res.status(400).json({
+                message:"Customer ID is required",
+                status:400,
+            });
+
+            const updateCustomer = await customerService.customerUpdate(id , updateData);
+            res.status(200).json({
+                message:"Customer Updated successfully ",
+                status:200,
+                data:updateCustomer,
+            })
+
+        }catch(error){
+            res.status(500).json({
+                message:"Failed to update customer server",
+                status:500,
+                error:error,
+            })
+        }
     }
 }

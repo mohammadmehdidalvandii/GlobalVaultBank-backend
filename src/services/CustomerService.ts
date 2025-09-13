@@ -1,5 +1,5 @@
 import CustomerModel from "../models/Customer";
-import { customerCreateProps } from "../types/customer";
+import { customerCreateProps, ICustomer } from "../types/customer";
 
 export const customerService = {
     async  createCustomer(data:customerCreateProps){
@@ -18,5 +18,9 @@ export const customerService = {
     async customerGetAll(){
         const customers = await CustomerModel.findAll()
         return customers
+    },
+    async customerUpdate(id:string , data:Partial<ICustomer>){
+        const customer = await CustomerModel.update(data , {where:{id}});
+        return customer
     }
 }
