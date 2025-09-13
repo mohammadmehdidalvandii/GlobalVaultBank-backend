@@ -97,5 +97,28 @@ export const customerController = {
                 error:error,
             })
         }
+    },
+    async customerDelete(req:Req , res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({
+                message:"Customer ID is required",
+                status:400,
+            }); 
+
+            const deleteCustomer = await customerService.customerDelete(id);
+            res.status(200).json({
+                message:"customer delete successfully",
+                status:200,
+                data: deleteCustomer,
+            })
+            
+        }catch(error){
+            res.status(500).json({
+                message:"Failed to delete customer server",
+                status:500,
+                error:error,
+            })
+        }
     }
 }

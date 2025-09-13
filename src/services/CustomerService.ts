@@ -27,5 +27,8 @@ export const customerService = {
         const customer = await CustomerModel.update(data , {where:{id}});
         return customer
     },
-
+    async customerDelete(id:string){
+        const customerDelete = await CustomerModel.destroy({where:{id}});
+        return customerDelete
+    }
 }
