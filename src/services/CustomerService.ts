@@ -14,5 +14,9 @@ export const customerService = {
     async customerGetByEmail(email:string){
         const customer = await CustomerModel.findOne({where:{email}});
         return customer
+    },
+    async customerGetAll(){
+        const customers = await CustomerModel.findAll()
+        return customers
     }
 }

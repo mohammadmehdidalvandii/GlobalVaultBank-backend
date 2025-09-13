@@ -34,5 +34,21 @@ export const customerController = {
                 message:"Failed to create customer server"
             })
         }
+    },
+    async customersGetAll(req:Req, res:Res){
+        try{
+            const customers = await customerService.customerGetAll();
+            res.status(200).json({
+                message:"get all customers successfully",
+                status:200,
+                data:customers
+            })
+        } catch(error){
+            return res.status(500).json({
+                message:"Failed to get all customers server",
+                status:500,
+                error:error
+            })
+        }
     }
 }
