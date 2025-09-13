@@ -4,7 +4,6 @@ import {Req,Res,Next} from '../types/express'
 export function authenticateToken (req:Req,res:Res,next:Next){
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    console.log("token ", token);
 
     if(!token) return res.status(401).json({
         message:"No token provided",
