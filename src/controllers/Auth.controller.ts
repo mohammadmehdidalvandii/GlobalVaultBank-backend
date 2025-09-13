@@ -1,5 +1,7 @@
+import { JwtPayload } from 'jsonwebtoken';
 import {authService} from '../services/AuthService';
 import {Req, Res} from '../types/express'
+
 
 export const authController = {
     async login(req:Req , res:Res){
@@ -44,6 +46,22 @@ export const authController = {
                 message:"Failed RefreshToken",
                 status:500,
                 error:error,
+            })
+        }
+    },
+    async getProfile(req:Req,res:Res){
+        try{
+             const user: any  = req.user
+            const employee = await authService.getProfile(user.id);
+            res.status(200).json({
+                message:"Get profile successfully",
+                status:200,
+                data:employee
+            })
+        } catch(error){
+            res.status(500).json({
+                message:"Failed get profile",
+                status:500,
             })
         }
     }

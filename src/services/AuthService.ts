@@ -1,3 +1,4 @@
+import employee from '../models/Employee';
 import EmployeeModel from '../models/Employee';
 import {comparePassword , generateAccessToken , generateRefreshToken , verifyToken} from '../utils/auth';
 
@@ -32,5 +33,9 @@ export const authService = {
         } catch(error){
             throw new Error(`Invalid refreshToken => ${error}`, );
         }
+    },
+    async getProfile(employeeID:string){
+        const employee = await EmployeeModel.findByPk(employeeID , {attributes:{exclude:['password']}})
+        return employee
     }
 }

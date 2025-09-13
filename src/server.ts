@@ -34,7 +34,7 @@ const connectToDatabase = async () => {
     await connectToDB.authenticate();
     console.log("DB connected successfully");
 
-    await connectToDB.sync({ alter: true });
+    await connectToDB.sync();
 
     const port = process.env.PORT || 3000;
     app.listen(port, () => {
