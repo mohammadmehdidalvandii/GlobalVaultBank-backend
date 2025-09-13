@@ -7,7 +7,8 @@ import dotenv from 'dotenv'
 import connectToDB from "./config/db";
 import EmployeeRoutes from './routes/EmployeeRoutes';
 import AuthRoutes from './routes/AuthRoutes';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
+import CustomerRoutes from './routes/CustomerRoutes'
 
 const app = express();
 
@@ -25,8 +26,9 @@ app.use(cors())
 
 
 // routes 
-app.use('/api/employees' , EmployeeRoutes)
-app.use('/api/auth', AuthRoutes)
+app.use('/api/employees' , EmployeeRoutes);
+app.use('/api/auth', AuthRoutes);
+app.use('/api/customer' , CustomerRoutes);
 
 // connection to dataBase
 const connectToDatabase = async () => {
