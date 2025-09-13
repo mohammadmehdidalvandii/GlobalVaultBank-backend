@@ -12,7 +12,6 @@ export function authenticateToken (req:Req,res:Res,next:Next){
     });
     try{
         const decoded = verifyToken(token);
-        console.log("decoded" , decoded?.data);
         (req as any).user = decoded?.data
         next()
     } catch(error){
