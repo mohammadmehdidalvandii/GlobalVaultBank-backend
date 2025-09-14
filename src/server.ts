@@ -8,7 +8,8 @@ import connectToDB from "./config/db";
 import EmployeeRoutes from './routes/EmployeeRoutes';
 import AuthRoutes from './routes/AuthRoutes';
 import cookieParser from 'cookie-parser';
-import CustomerRoutes from './routes/CustomerRoutes'
+import CustomerRoutes from './routes/CustomerRoutes';
+import AccountRoutes from './routes/AccountRoutes';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(cors())
 app.use('/api/employees' , EmployeeRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/customer' , CustomerRoutes);
+app.use('/api/accounts' ,  AccountRoutes);
 
 // connection to dataBase
 const connectToDatabase = async () => {
