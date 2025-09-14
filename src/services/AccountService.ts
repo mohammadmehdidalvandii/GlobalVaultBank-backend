@@ -31,5 +31,12 @@ export const accountService = {
             as:'customer'
         }]});
         return accounts
+    },
+    async getAccountByID(id:string){
+        const account = await AccountModel.findByPk(id,{include:[{
+            model:CustomerModel,
+            as:'customer'
+        }]});
+        return account
     }
 }
