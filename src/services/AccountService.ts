@@ -38,5 +38,9 @@ export const accountService = {
             as:'customer'
         }]});
         return account
+    },
+    async deleteAccount(id:string){
+        const accountDelete = await AccountModel.destroy({where:{id}});
+        return accountDelete
     }
 }

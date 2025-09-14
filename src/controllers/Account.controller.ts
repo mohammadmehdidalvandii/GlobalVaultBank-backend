@@ -39,13 +39,11 @@ export const accountController = {
     async accountGetById(req:Req , res:Res){
         try{
             const {id} = req.params;
-            console.log("id =>",id)
             if(!id) return res.status(400).json({
                 message:"ID is required",
                 status:400,
             });
             const account = await accountService.getAccountByID(id);
-            console.log("account=>", account)
             res.status(200).json({
                 message:"get account by ID successfully",
                 status:200,
@@ -56,6 +54,25 @@ export const accountController = {
                 message:"Failed get account by ID  server",
                 status:500,
                 error:error
+            })
+        }
+    },
+    async delete(req:Req , res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({
+                message:"ID is required",
+                status:400,
+            });
+            const deleteAccount = await accountService.deleteAccount(id);
+            res.status(200).json({
+                message:"delete account successfully",
+                status:200,
+                data:deleteAccount,
+            })
+        } catch(error){
+            res.status(500).json({
+                message:"Failed delete account server"
             })
         }
     }
