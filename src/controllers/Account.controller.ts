@@ -19,5 +19,21 @@ export const accountController = {
                 error:error
             })
         }
+    },
+    async accountGetAll(req:Req,res:Res){
+        try{
+            const accounts = await accountService.getAllAccounts();
+            res.status(200).json({
+                message:"get all accounts successfully",
+                status:200,
+                data:accounts
+            })
+        }catch(error){
+            res.status(500).json({
+                message:"Failed get all accounts server",
+                status:500,
+                error:error
+            })
+        }
     }
 }

@@ -11,6 +11,7 @@ const account = connectToDB.define('account',{
     customerId:{
         type:DataTypes.UUID,
         allowNull:false,
+        field:'customer_id',
         references:{
             model:customer,
             key:'id'

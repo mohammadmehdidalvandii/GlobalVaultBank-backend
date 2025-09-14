@@ -1,5 +1,4 @@
-import AccountModel from '../models/Account';
-import CustomerModel from '../models/Customer';
+import {AccountModel , CustomerModel} from '../models/index'
 import { accountCreateProps } from '../types/account';
 
 
@@ -14,7 +13,7 @@ export const accountService = {
 
         const newAccount = await AccountModel.create({
             accountNumber,
-            accountName: accountName || `${customer.firstName} + ${customer.lastName}`,
+            accountName: accountName || `${customer.firstName} ${customer.lastName}`,
             customerId: customerId ||customer.id,
             type,
             currency:currency || 'USD',
@@ -25,5 +24,12 @@ export const accountService = {
         });
 
         return newAccount
+    },
+    async getAllAccounts(){
+        const accounts = await AccountModel.findAll({include:[{
+            model:CustomerModel,
+            as:'customer'
+        }]});
+        return accounts
     }
 }

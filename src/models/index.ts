@@ -1,7 +1,7 @@
-import customer from "./Customer";
-import account from "./Account";
+import CustomerModel from "./Customer";
+import AccountModel from "./Account";
 
-customer.hasMany(account, {foreignKey:'customerId', as: 'account'});
-account.belongsTo(customer,{foreignKey:"customerId" , as: 'customer'});
+CustomerModel.hasMany(AccountModel, {foreignKey:'customerId', as: 'accounts'});
+AccountModel.belongsTo(CustomerModel,{foreignKey:"customerId" , as: 'customer'});
 
-export {customer , account}
+export {CustomerModel , AccountModel}
