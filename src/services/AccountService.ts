@@ -42,5 +42,11 @@ export const accountService = {
     async deleteAccount(id:string){
         const accountDelete = await AccountModel.destroy({where:{id}});
         return accountDelete
-    }
+    },
+    async updateAccount(id:string ,data:Partial<accountCreateProps>){
+        const account = await AccountModel.findByPk(id);
+        if(!account) throw new Error("Account not found")
+        await account.update(data);
+        return account
+    },
 }

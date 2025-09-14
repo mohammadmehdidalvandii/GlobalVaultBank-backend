@@ -75,5 +75,27 @@ export const accountController = {
                 message:"Failed delete account server"
             })
         }
+    },
+    async update(req:Req , res:Res){
+        try{
+            const {id} = req.params;
+            const data = req.body;
+            if(!id) return res.status(400).json({
+                message:"ID is required",
+                status:400,
+            });
+            const updateAccount = await accountService.updateAccount(id ,data)
+            res.status(200).json({
+                message:"updated account successfully",
+                status:200,
+                data:updateAccount,
+            })
+        } catch(error){
+            res.status(500).json({
+                message:"Failed account update server",
+                status:500,
+                error:error
+            })
+        }
     }
 }

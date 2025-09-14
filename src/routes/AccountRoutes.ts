@@ -6,6 +6,7 @@ const router = Router();
 router.post('/create', accountController.create);
 router.get('/', accountController.accountGetAll);
 router.get('/:id', accountController.accountGetById);
-router.delete('/delete/:id',accountController.delete)
+router.delete('/delete/:id',accountController.delete);
+router.put('/update/:id', accountController.delete);
 
 export default router
