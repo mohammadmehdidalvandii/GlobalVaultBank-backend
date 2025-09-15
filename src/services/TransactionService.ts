@@ -26,5 +26,20 @@ export const transactionService = {
             status: "pending",
         });
         return newTransaction
+    },
+    async getTransactions(filter: any = {}){
+        const {accountId , customerId , status ,transactionType} = filter;
+
+        const where:any = {};
+        if(accountId) where.accountId = accountId;
+        if(customerId) where.customerId = customerId;
+        if(status) where.status = status;
+        if(transactionType) where.transactionType = transactionType;
+
+        const transactions = await TransactionModel.findAll({where , include:[
+            {model:AccountModel , as:"account"},
+            {model:CustomerModel , as:'customer'},
+        ]});
+        return transactions
     }
 }
