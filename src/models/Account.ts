@@ -1,11 +1,11 @@
 import { DataTypes ,Model } from "sequelize";
 import connectToDB from "../config/db";
 import customer from "./Customer";
-import { IAccount } from "../types/account";
+import { AccountCreationAttributes, IAccount } from "../types/account";
 
-type accountInstance = Model<IAccount> & IAccount;
+type accountInstance = Model<IAccount ,AccountCreationAttributes> & IAccount;
 
-const account = connectToDB.define<accountInstance>('account',{
+const account = connectToDB.define<accountInstance, AccountCreationAttributes>('account',{
     id:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
