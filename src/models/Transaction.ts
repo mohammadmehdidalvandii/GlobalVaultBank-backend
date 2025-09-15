@@ -1,12 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import connectToDB from "../config/db";
-import AccountModel from '../models/Account';
-import CustomerModel from '../models/Customer';
-import { ITransaction } from "../types/transaction";
+import account from '../models/Account';
+import customer from '../models/Customer';
+import { ITransaction, TransactionCreationAttributes } from "../types/transaction";
 
-type transactionInstance = Model<ITransaction> & ITransaction;
+type transactionInstance = Model<ITransaction ,  TransactionCreationAttributes> & ITransaction;
 
-const transaction = connectToDB.define<transactionInstance>('transaction',{
+const transaction = connectToDB.define<transactionInstance ,TransactionCreationAttributes>('transaction',{
     id:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
@@ -17,7 +17,7 @@ const transaction = connectToDB.define<transactionInstance>('transaction',{
         allowNull: false,
         field:'account_id',
         references:{
-            model: AccountModel,
+            model: account,
             key:'id'
         }
     },
@@ -26,7 +26,7 @@ const transaction = connectToDB.define<transactionInstance>('transaction',{
         allowNull: false,
         field:'customer_id',
         references:{
-            model:CustomerModel,
+            model:customer,
             key:'id',
         }
     },

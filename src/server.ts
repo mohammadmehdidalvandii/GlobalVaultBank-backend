@@ -10,6 +10,7 @@ import AuthRoutes from './routes/AuthRoutes';
 import cookieParser from 'cookie-parser';
 import CustomerRoutes from './routes/CustomerRoutes';
 import AccountRoutes from './routes/AccountRoutes';
+import TransactionRoutes from './routes/TransactionRoutes';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/employees' , EmployeeRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/customer' , CustomerRoutes);
 app.use('/api/accounts' ,  AccountRoutes);
+app.use('/api/transactions', TransactionRoutes)
 
 // connection to dataBase
 const connectToDatabase = async () => {
