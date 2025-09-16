@@ -40,7 +40,8 @@ export const transactionController = {
     },
     async transactionGetId(req:Req ,res:Res){
         try{
-            const {id} = req.params
+            const {id} = req.params;
+            if(!id) return res.status(400).json({message:"ID is required",status:400});
             const transaction = await transactionService.getTransactionById(id);
             res.status(200).json({
                 message:"Get Transaction by ID successfully",
@@ -52,6 +53,24 @@ export const transactionController = {
                 message:"Failed get Transaction server",
                 status:500,
                 error:error.message,
+            })
+        }
+    },
+    async approve(req:Req ,res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({message:"ID is required",status:400});
+            const transaction = await transactionService.approveTransaction(id);
+            res.status(200).json({
+                message:'Transaction approve',
+                status:200,
+                data:transaction,
+            })
+        }catch(error:any){
+            res.status(500).json({
+                message:"transaction approve error server",
+                status:500,
+                error:error.message
             })
         }
     }

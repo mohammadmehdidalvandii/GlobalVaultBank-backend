@@ -51,4 +51,29 @@ export const transactionService = {
         })
         return transaction
     },
+    async approveTransaction(id:string){
+        const transaction = await TransactionModel.findByPk(id);
+        if(!transaction) throw new Error('Transaction not found');
+        
+        // checking status transaction
+        if(transaction.status !== 'pending'){
+            throw new Error('Transaction already processed');
+        }
+        // find transaction what account
+        const account = await AccountModel.findByPk(transaction.accountId);
+        if(!account) throw new Error('Account not found');
+        // change balance account 
+        if(transaction.transactionType === 'debit'){
+        account.balance = Number(account.balance) - Number(transaction.amount );
+        } else if(transaction.transactionType === 'credit'){
+            account.balance = Number(account.balance) + Number(transaction.amount);
+        }
+
+        await account.save();
+        transaction.status = 'completed';
+        await transaction.save();
+
+        return transaction
+
+    }
 }
