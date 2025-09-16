@@ -12,11 +12,11 @@ export const accountController = {
                 status:201,
                 data: account
             })
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed create account server",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -28,11 +28,11 @@ export const accountController = {
                 status:200,
                 data:accounts
             })
-        }catch(error){
+        }catch(error:any){
             res.status(500).json({
                 message:"Failed get all accounts server",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -49,11 +49,11 @@ export const accountController = {
                 status:200,
                 data:account
             })
-        }catch(error){
+        }catch(error:any){
             res.status(500).json({
                 message:"Failed get account by ID  server",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -70,9 +70,11 @@ export const accountController = {
                 status:200,
                 data:deleteAccount,
             })
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
-                message:"Failed delete account server"
+                message:"Failed delete account server",
+                status:500,
+                error:error.message
             })
         }
     },
@@ -90,11 +92,11 @@ export const accountController = {
                 status:200,
                 data:updateAccount,
             })
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed account update server",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     }

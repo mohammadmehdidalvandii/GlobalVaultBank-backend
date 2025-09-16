@@ -38,11 +38,11 @@ export const employeeController = {
                 data:employee
             })
 
-        } catch(error){
+        } catch(error:any){
             res.status(400).json({
                 message:"Failed to create employee",
                 status:400,
-                error:error
+                error:error.message
             })
         }
     },
@@ -63,11 +63,11 @@ export const employeeController = {
                 data:updateEmployee,
             })
 
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed to update employee",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -86,11 +86,11 @@ export const employeeController = {
                 data:deleteEmployee
             })
 
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed to delete employee",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -101,11 +101,11 @@ export const employeeController = {
                 message:"Get all employees",
                 data:employees
             })
-        } catch(error){
+        } catch(error:any){
             return res.status(500).json({
                 message:"Failed getAllEmployees",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     },
@@ -124,11 +124,11 @@ export const employeeController = {
                 data:employeeID,
             })
 
-        }catch(error){
+        }catch(error:any){
             res.status(500).json({
                 message:"Failed get employee_code",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     }

@@ -29,9 +29,11 @@ export const customerController = {
                 status:201,
                 data: newCustomer
             })
-        } catch(error){
+        } catch(error:any){
             return res.status(500).json({
-                message:"Failed to create customer server"
+                message:"Failed to create customer server",
+                status:500,
+                error:error.message,
             })
         }
     },
@@ -43,11 +45,11 @@ export const customerController = {
                 status:200,
                 data:customers
             })
-        } catch(error){
+        } catch(error:any){
             return res.status(500).json({
                 message:"Failed to get all customers server",
                 status:500,
-                error:error
+                error:error.message,
             })
         }
     },
@@ -67,11 +69,11 @@ export const customerController = {
                 data:updateCustomer,
             })
 
-        }catch(error){
+        }catch(error:any){
             res.status(500).json({
                 message:"Failed to update customer server",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     },
@@ -90,11 +92,11 @@ export const customerController = {
                 data:customer
             })
 
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed get customer ID server",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     },
@@ -113,11 +115,11 @@ export const customerController = {
                 data: deleteCustomer,
             })
             
-        }catch(error){
+        }catch(error:any){
             res.status(500).json({
                 message:"Failed to delete customer server",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     }

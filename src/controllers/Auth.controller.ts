@@ -22,11 +22,11 @@ export const authController = {
                 data:{accessToken , employee}
             })
 
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed login Employee",
                 status:500,
-                error:error
+                error:error.message
             })
         }
     },
@@ -41,11 +41,11 @@ export const authController = {
                 message:"updated Refresh token successfully",
                 data:accessToken,
             })
-        } catch(error){ 
+        } catch(error:any){ 
             res.status(500).json({
                 message:"Failed RefreshToken",
                 status:500,
-                error:error,
+                error:error.message,
             })
         }
     },
@@ -58,10 +58,11 @@ export const authController = {
                 status:200,
                 data:employee
             })
-        } catch(error){
+        } catch(error:any){
             res.status(500).json({
                 message:"Failed get profile",
                 status:500,
+                error:error.message
             })
         }
     },
