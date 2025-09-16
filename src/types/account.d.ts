@@ -8,7 +8,7 @@ export interface IAccount {
     type:string,
     currency:string,
     currencySymbol:string,
-    balance:string,
+    balance:number,
     interestRate:string,
     status:string,
 }
