@@ -73,5 +73,23 @@ export const transactionController = {
                 error:error.message
             })
         }
+    },
+    async reject(req:Req ,res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) return res.status(400).json({message:"ID is required",status:400});
+            const transaction = await transactionService.rejectTransaction(id)
+            res.status(200).json({
+                message:"Transaction Rejected",
+                status:200,
+                data:transaction,
+            })
+        }catch(error:any){
+            res.status(500).json({
+                message:'Transaction reject error server',
+                status:500,
+                error:error.message
+            })
+        }
     }
 }

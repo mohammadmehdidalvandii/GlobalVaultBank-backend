@@ -74,6 +74,16 @@ export const transactionService = {
         await transaction.save();
 
         return transaction
-
+    },
+    async rejectTransaction(id:string){
+        const transaction = await TransactionModel.findByPk(id);
+        if(!transaction) throw new Error('Transaction not found');
+        
+        if(transaction.status !== 'pending'){
+            throw new Error("Transaction already processed");
+        }
+        transaction.status = "failed";
+        await transaction.save();
+        return transaction
     }
 }
