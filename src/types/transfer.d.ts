@@ -20,3 +20,5 @@ completedAt:data,
 }
 
 export interface TransferCreationAttributes extends Optional<ITransfer, "id">{}
+
+export type transferCreateProps = Omit<ITransfer, "id">;

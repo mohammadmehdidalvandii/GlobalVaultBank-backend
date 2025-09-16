@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import CustomerRoutes from './routes/CustomerRoutes';
 import AccountRoutes from './routes/AccountRoutes';
 import TransactionRoutes from './routes/TransactionRoutes';
+import TransferRoutes from './routes/TransferRoutes';
 
 const app = express();
 
@@ -32,7 +33,8 @@ app.use('/api/employees' , EmployeeRoutes);
 app.use('/api/auth', AuthRoutes);
 app.use('/api/customer' , CustomerRoutes);
 app.use('/api/accounts' ,  AccountRoutes);
-app.use('/api/transactions', TransactionRoutes)
+app.use('/api/transactions', TransactionRoutes);
+app.use('/api/transfers' ,TransferRoutes)
 
 // connection to dataBase
 const connectToDatabase = async () => {
