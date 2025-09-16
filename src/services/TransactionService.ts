@@ -41,5 +41,14 @@ export const transactionService = {
             {model:CustomerModel , as:'customer'},
         ]});
         return transactions
-    }
+    },
+    async getTransactionById(id:string){
+        const transaction = await TransactionModel.findByPk(id,{
+            include:[
+                {model:AccountModel , as:'account'},
+                {model: CustomerModel, as:'customer'},
+            ]
+        })
+        return transaction
+    },
 }
