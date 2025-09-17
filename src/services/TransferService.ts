@@ -54,5 +54,16 @@ export const transferService = {
             });
             return newTransfer
         })
+    },
+    async getAllTransfer(){
+const transfers = await TransferModel.findAll({
+  include: [
+    { model: AccountModel, as: "fromAccount" },
+    { model: AccountModel, as: "toAccount" },
+    { model: CustomerModel, as: "fromCustomer" },
+    { model: CustomerModel, as: "toCustomer" },
+  ],
+});
+        return transfers
     }
 }

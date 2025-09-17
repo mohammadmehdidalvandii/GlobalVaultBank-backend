@@ -18,5 +18,21 @@ export const transferController = {
                 error:error.message
             })
         }
+    },
+    async getTransfer(req:Req , res:Res){
+        try{
+            const transfers = await transferService.getAllTransfer();
+            res.status(200).json({
+                message:"get transfer successfully",
+                status:200,
+                data:transfers
+            })
+        }catch(error:any){
+            res.status(500).json({
+                message:"Failed get transfers server error",
+                status:500,
+                error:error.message,
+            })
+        }
     }
 }
