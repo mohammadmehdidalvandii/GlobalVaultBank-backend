@@ -56,14 +56,19 @@ export const transferService = {
         })
     },
     async getAllTransfer(){
-const transfers = await TransferModel.findAll({
-  include: [
-    { model: AccountModel, as: "fromAccount" },
-    { model: AccountModel, as: "toAccount" },
-    { model: CustomerModel, as: "fromCustomer" },
-    { model: CustomerModel, as: "toCustomer" },
-  ],
-});
+        const transfers = await TransferModel.findAll({
+          include: [
+            { model: AccountModel, as: "fromAccount" },
+            { model: AccountModel, as: "toAccount" },
+            { model: CustomerModel, as: "fromCustomer" },
+            { model: CustomerModel, as: "toCustomer" },
+          ],
+        });
         return transfers
+    },
+    async getTransferById(id:string){
+        const transfer = TransferModel.findByPk(id);
+        if(!transfer) throw new Error("Transfer not found");
+        return transfer
     }
 }
