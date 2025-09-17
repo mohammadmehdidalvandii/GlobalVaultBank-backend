@@ -4,9 +4,9 @@ import { validationTransaction } from "../validations/transactionValidation";
 
 const router = Router();
 
-router.get('/', validationTransaction ,transactionController.transactionGetAll);
+router.get('/', transactionController.transactionGetAll);
 router.get('/:id',transactionController.transactionGetId);
-router.post('/create', transactionController.create);
+router.post('/create',validationTransaction , transactionController.create);
 router.put('/approve/:id',transactionController.approve);
 router.put('/reject/:id',transactionController.reject);
 
