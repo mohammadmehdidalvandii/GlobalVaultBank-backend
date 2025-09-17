@@ -1,4 +1,3 @@
-import { Req , Res } from "./types/express";
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -42,7 +41,7 @@ const connectToDatabase = async () => {
     await connectToDB.authenticate();
     console.log("DB connected successfully");
 
-    await connectToDB.sync();
+    await connectToDB.sync({alter:true});
 
     const port = process.env.PORT || 3000;
     app.listen(port, () => {

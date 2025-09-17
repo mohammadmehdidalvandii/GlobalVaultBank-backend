@@ -11,6 +11,10 @@ export interface IAccount {
     balance:number,
     interestRate:string,
     status:string,
+    dailyWithdrawalLimit:string,
+    dailyTransactionLimit:string,
+    cardStatus:'active'|'blocked';
+    isClosed:"true"|'false'
 }
 
 export interface AccountCreationAttributes extends Optional<IAccount , 'id'>{}

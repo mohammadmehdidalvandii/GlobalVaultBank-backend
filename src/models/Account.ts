@@ -1,4 +1,4 @@
-import { DataTypes ,Model } from "sequelize";
+import { DataTypes ,Model, UUIDV4 } from "sequelize";
 import connectToDB from "../config/db";
 import customer from "./Customer";
 import { AccountCreationAttributes, IAccount } from "../types/account";
@@ -53,6 +53,22 @@ const account = connectToDB.define<accountInstance, AccountCreationAttributes>('
         type:DataTypes.ENUM('active','frozen','closed'),
         defaultValue:'active'
     },
+    dailyWithdrawalLimit:{
+        type:DataTypes.DECIMAL(15,2),
+        defaultValue:1000.00,
+    },
+    dailyTransactionLimit:{
+        type:DataTypes.INTEGER,
+        defaultValue:10,
+    },
+    cardStatus:{
+        type:DataTypes.ENUM('active','blocked'),
+        defaultValue:"active",
+    },
+    isClosed:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false,
+    }
 },{
     timestamps:true,
     underscored:true

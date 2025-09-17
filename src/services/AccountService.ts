@@ -1,18 +1,21 @@
 import {AccountModel , CustomerModel} from '../models/index'
 import { accountCreateProps } from '../types/account';
-
+import { v4 as uuidv4 } from "uuid";
 
 export const accountService = {
     async createAccount(data:accountCreateProps){
-        const {customerId,accountNumber,accountName,type,currency,currencySymbol,balance,interestRate,status} = data;
+        const {customerId,accountNumber,accountName,type,currency,currencySymbol,balance,interestRate,status, dailyWithdrawalLimit ,dailyTransactionLimit ,cardStatus ,isClosed} = data;
 
         const customer = await CustomerModel.findByPk(customerId);
         if(!customer){
             throw new Error('Customer not found');
         };
 
+        const createAccountNumber = "AC-"+ uuidv4().slice(0,12);
+
+
         const newAccount = await AccountModel.create({
-            accountNumber,
+            accountNumber: createAccountNumber,
             accountName: accountName || `${customer.firstName} ${customer.lastName}`,
             customerId: customerId ||customer.id,
             type,
@@ -21,6 +24,10 @@ export const accountService = {
             balance,
             interestRate,
             status: status || 'active',
+            dailyWithdrawalLimit,
+            dailyTransactionLimit,
+            cardStatus,
+            isClosed,
         });
 
         return newAccount
