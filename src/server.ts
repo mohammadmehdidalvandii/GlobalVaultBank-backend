@@ -13,6 +13,9 @@ import TransactionRoutes from './routes/TransactionRoutes';
 import TransferRoutes from './routes/TransferRoutes';
 import DailyReportRoutes from './routes/DailyRoutes';
 
+// cron services 
+import './cron/cleanUpDailyReports'
+
 const app = express();
 
 dotenv.config()
