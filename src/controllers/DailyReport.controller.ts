@@ -33,5 +33,27 @@ export const dailyReportController = {
                 error:error.message,
             })
         }
+    },
+    async getById(req:Req ,res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) res.status(400).json({
+                message:"ID is required",
+                status:400,
+            });
+
+            const report = await dailyReportService.getReportById(id);
+            res.status(200).json({
+                message:"Get reports by id successfully",
+                status:200,
+                data:report,
+            })
+        } catch(error:any){
+            res.status(500).json({
+                message:"Failed get by id daily-reports server error",
+                status:500,
+                error:error.message,
+            })
+        }
     }
 }
