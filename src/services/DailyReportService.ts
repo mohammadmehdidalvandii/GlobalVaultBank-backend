@@ -6,7 +6,7 @@ export const dailyReportService = {
     async createReport(data:createDailyReportProps){
         const {reportDate,totalTransactions,totalVolume,currencyBreakdown,accountActivity} = data
         const report = await DailyReportModel.create({
-            reportDate:new Date(),
+            reportDate:reportDate ||new Date(),
             totalTransactions,
             totalVolume,
             currencyBreakdown,
