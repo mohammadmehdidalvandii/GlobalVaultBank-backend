@@ -55,5 +55,25 @@ export const dailyReportController = {
                 error:error.message,
             })
         }
+    },
+    async delete(req:Req ,res:Res){
+        try{
+            const {id} = req.params;
+            if(!id) res.status(400).json({
+                message:"ID is required",
+                status:400,
+            });
+            const deleted = await dailyReportService.deleteReport(id);
+            res.status(200).json({
+                message:"Report deleted successfully",
+                status:200,
+                data:deleted,
+            })
+        }catch(error:any){
+            res.status(500).json({
+                message:"Failed to delete report",
+                error:error.message,
+            })
+        }
     }
 }

@@ -32,6 +32,12 @@ const dailyReport = connectToDB.define<dailyReportInstance , DailyReportCreation
         type:DataTypes.JSON,
         allowNull:true,
     },
+    createdAt:{
+        type:DataTypes.DATE,
+    },
+    updatedAt:{
+        type:DataTypes.DATE
+    }
 },{
     timestamps:true,
     underscored:true,
