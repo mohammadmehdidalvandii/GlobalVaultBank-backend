@@ -35,4 +35,7 @@ const dailyReport = connectToDB.define<dailyReportInstance , DailyReportCreation
 },{
     timestamps:true,
     underscored:true,
-})
+});
+
+
+export default dailyReport
