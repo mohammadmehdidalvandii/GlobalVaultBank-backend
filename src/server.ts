@@ -11,6 +11,7 @@ import CustomerRoutes from './routes/CustomerRoutes';
 import AccountRoutes from './routes/AccountRoutes';
 import TransactionRoutes from './routes/TransactionRoutes';
 import TransferRoutes from './routes/TransferRoutes';
+import DailyReportRoutes from './routes/DailyRoutes';
 
 const app = express();
 
@@ -33,7 +34,8 @@ app.use('/api/auth', AuthRoutes);
 app.use('/api/customer' , CustomerRoutes);
 app.use('/api/accounts' ,  AccountRoutes);
 app.use('/api/transactions', TransactionRoutes);
-app.use('/api/transfers' ,TransferRoutes)
+app.use('/api/transfers' ,TransferRoutes);
+app.use('/api/daily-reports', DailyReportRoutes);
 
 // connection to dataBase
 const connectToDatabase = async () => {
