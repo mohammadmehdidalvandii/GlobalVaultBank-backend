@@ -17,5 +17,21 @@ export const dailyReportController = {
                 error:error.message
             })
         }
+    },
+    async getAll(req:Req , res:Res){
+        try{    
+            const reports = await dailyReportService.getReport();
+            res.status(200).json({
+                message:"Reports get all successfully",
+                status:200,
+                data:reports,
+            })
+        } catch(error:any){
+            res.status(500).json({
+                message:"Failed to fetch reports server error",
+                status:500,
+                error:error.message,
+            })
+        }
     }
 }
