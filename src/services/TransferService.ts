@@ -1,5 +1,6 @@
 import connectToDB from "../config/db";
 import { TransferModel , AccountModel ,CustomerModel } from "../models";
+import { dailyReportService } from "./DailyReportService";
 import { transferCreateProps } from "../types/transfer";
 import { v4 as uuidv4 } from "uuid";
 
@@ -52,6 +53,9 @@ export const transferService = {
             },{
             transaction:t
             });
+
+            await dailyReportService.updateReport(amount , currency);
+        
             return newTransfer
         })
     },
