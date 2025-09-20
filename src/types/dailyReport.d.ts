@@ -6,8 +6,8 @@ id:string
 reportDate:date,
 totalTransactions:number
 totalVolume:number
-currencyBreakdown:Json
-accountActivity:Json
+currencyBreakdown:object
+accountActivity:object
 createdAt:Date
 updatedAt:Date
 }

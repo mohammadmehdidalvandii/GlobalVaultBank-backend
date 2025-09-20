@@ -1,6 +1,6 @@
 import DailyReportModel from '../models/DailyReport'
 import { Op } from 'sequelize';
-import { createDailyReportProps } from '../types/dailyReport';
+import { createDailyReportProps, IDailyReport } from '../types/dailyReport';
 
 export const dailyReportService = {
     async createReport(data:createDailyReportProps){
@@ -12,6 +12,28 @@ export const dailyReportService = {
             currencyBreakdown,
             accountActivity,
         });
+        return report
+    },
+    async updateReport(amount:Number , currency:string){
+        const today = new Date().toISOString().split("T")[0] // YYYY-MM-DD
+
+        let report = await DailyReportModel.findOne({where:{reportDate:today}})
+        if(!report){
+            report = await DailyReportModel.create({
+                reportDate: today,
+                totalTransactions:0,
+                totalVolume:0,
+                currencyBreakdown:{},
+                accountActivity:{},
+            })
+        }
+        report.totalTransactions += 1;
+        report.totalVolume = Number(report.totalVolume) + Number(amount);
+
+        const breakdown: any = report.currencyBreakdown || {};
+        breakdown[currency] = (breakdown[currency] || 0) + Number;
+        report.currencyBreakdown = breakdown;
+        await report.save();
         return report
     },
     async getReport(){
