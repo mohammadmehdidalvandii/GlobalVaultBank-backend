@@ -19,7 +19,7 @@ export const authController = {
             res.status(200).json({
                 message:"login successfully",
                 status:200,
-                data:{accessToken , employee}
+                data:{accessToken }
             })
 
         } catch(error:any){
