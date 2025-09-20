@@ -10,7 +10,7 @@ export const employeeController = {
             const {employee_code , first_name , last_name , national_id , email , password ,phone , position ,department, hire_data  , status} = req.body;
 
             const existEmployee = await employeeService.getEmployeeByCodeEmployee(employee_code);
-            if(!existEmployee) {
+            if(existEmployee) {
                  res.status(400).json({
                 message:"Employee is already ",
                 status:400,
@@ -39,9 +39,9 @@ export const employeeController = {
             })
 
         } catch(error:any){
-            res.status(400).json({
+            res.status(500).json({
                 message:"Failed to create employee",
-                status:400,
+                status:500,
                 error:error.message
             })
         }

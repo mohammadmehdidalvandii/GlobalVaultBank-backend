@@ -23,8 +23,6 @@ export const validationEmployees = [
     .notEmpty().withMessage('Position is required'),
     body('department')
     .notEmpty().withMessage('Department is required'),
-    body('hire_data')
-    .notEmpty().withMessage('Hire date is required'),
     body('status')
     .isIn(['active', 'inactive', 'suspended']).withMessage('Invalid status value'),
     (req:Req , res:Res , next:Next)=>{
