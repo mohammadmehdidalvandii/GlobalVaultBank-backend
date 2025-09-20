@@ -30,7 +30,9 @@ export const dailyReportService = {
         report.totalTransactions += 1;
         report.totalVolume = Number(report.totalVolume) + Number(amount);
 
-        const breakdown: any = report.currencyBreakdown || {};
+       const breakdown = typeof report.currencyBreakdown === "string"
+  ? JSON.parse(report.currencyBreakdown)   
+  : report.currencyBreakdown || {};
         breakdown[currency] = (breakdown[currency] || 0) + Number;
         report.currencyBreakdown = breakdown;
         await report.save();
