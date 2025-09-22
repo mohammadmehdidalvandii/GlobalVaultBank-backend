@@ -11,8 +11,9 @@ export const authController = {
 
             res.cookie('refreshToken' , refreshToken,{
                 httpOnly:true,
-                sameSite:"strict",
-                path:"/api/auth/refresh-token",
+                sameSite:"none",
+                secure:false,
+                path:"/",
                 maxAge:7 * 24 * 60 * 60 * 1000,
             });
 

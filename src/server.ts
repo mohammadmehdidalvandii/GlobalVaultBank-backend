@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended:true}));
 // Middleware
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors())
+app.use(cors({credentials:true ,   origin: "http://localhost:5173"}))
 
 
 // routes 
