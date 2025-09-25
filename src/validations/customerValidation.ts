@@ -11,7 +11,6 @@ export const validationCustomer = [
     body("city").notEmpty().withMessage('City is required'),
     body("postalCode").notEmpty().withMessage('postalCode is required'),
     body("country").notEmpty().withMessage('Country is required'),
-    body("status").notEmpty().withMessage('Status is required').isIn(['active','suspended','closed']).withMessage('Invalid status value'),
     (req:Req, res:Res ,  next:Next)=>{
         const errors = validationResult(req);
         if(!errors.isEmpty()){

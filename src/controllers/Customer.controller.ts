@@ -21,7 +21,7 @@ export const customerController = {
                 city,
                 postalCode,
                 country,
-                status,
+                status: "active",
                 lastActivity
             });
             res.status(201).json({
