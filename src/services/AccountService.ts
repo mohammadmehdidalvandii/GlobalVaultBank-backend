@@ -1,4 +1,4 @@
-import {AccountModel , CustomerModel} from '../models/index'
+import {AccountModel , CustomerModel ,TransactionModel} from '../models/index'
 import { accountCreateProps } from '../types/account';
 import { v4 as uuidv4 } from "uuid";
 
@@ -36,6 +36,9 @@ export const accountService = {
         const accounts = await AccountModel.findAll({include:[{
             model:CustomerModel,
             as:'customer'
+        },{
+            model:TransactionModel,
+            as:'transactions'
         }]});
         return accounts
     },
@@ -43,6 +46,9 @@ export const accountService = {
         const account = await AccountModel.findByPk(id,{include:[{
             model:CustomerModel,
             as:'customer'
+        },{
+            model:TransactionModel,
+            as:'transactions'
         }]});
         return account
     },
