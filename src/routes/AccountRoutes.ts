@@ -8,6 +8,6 @@ router.post('/create',  validationAccount ,accountController.create);
 router.get('/', accountController.accountGetAll);
 router.get('/:id', accountController.accountGetById);
 router.delete('/delete/:id',accountController.delete);
-router.put('/update/:id', accountController.delete);
+router.patch('/update/:id', accountController.update);
 
 export default router

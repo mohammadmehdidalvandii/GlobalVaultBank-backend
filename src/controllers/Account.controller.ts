@@ -81,12 +81,27 @@ export const accountController = {
     async update(req:Req , res:Res){
         try{
             const {id} = req.params;
-            const data = req.body;
             if(!id) return res.status(400).json({
                 message:"ID is required",
                 status:400,
             });
-            const updateAccount = await accountService.updateAccount(id ,data)
+
+            const allowedFields = [
+            "status",
+            "interestRate",
+            "dailyTransactionLimit",
+            "dailyWithdrawalLimit",
+            "cardStatus",
+            "isClosed",
+            ];
+            let updates:any = {};
+            console.log("red =>" , req.body)
+            allowedFields.forEach((field)=>{
+                if(req.body[field] !== undefined) updates[field] = req.body[field]
+            })
+
+
+            const updateAccount = await accountService.updateAccount(id ,updates)
             res.status(200).json({
                 message:"updated account successfully",
                 status:200,

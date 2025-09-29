@@ -58,8 +58,23 @@ export const accountService = {
     },
     async updateAccount(id:string ,data:Partial<accountCreateProps>){
         const account = await AccountModel.findByPk(id);
-        if(!account) throw new Error("Account not found")
-        await account.update(data);
+        if(!account) throw new Error("Account not found");
+
+        const allowedFields: (keyof accountCreateProps)[] = [ 
+            "status",
+            "interestRate",
+            "dailyTransactionLimit",
+            "dailyWithdrawalLimit",
+            "cardStatus",
+            "isClosed",
+        ]
+        let updates= {} as any;
+        allowedFields.forEach((field)=>{
+            if(data[field] !== undefined){
+                updates[field] = data[field] 
+            }   })
+            console.log("updates 1 =>" , updates)
+        await account.update(updates);
         return account
     },
 }
