@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended:true}));
 // Middleware
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors({credentials:true ,   origin: "https://global-bank.chbk.app"}))
+app.use(cors({credentials:true ,   origin: "https://global-bank.chbk.dev"}))
 
 
 // routes 
